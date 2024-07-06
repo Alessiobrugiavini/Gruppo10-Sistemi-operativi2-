@@ -1,0 +1,9 @@
+{
+  "cpu": {
+    "fqbn": "esp32:esp32:uPesy_wroom:UploadSpeed=921600,CPUFreq=240,FlashFreq=80,FlashMode=qio,PartitionScheme=default,DebugLevel=none,EraseFlash=none",
+    "name": "uPesy ESP32 Wroom DevKit",
+    "type": "serial"
+  },
+  "secrets": [],
+  "included_libs": []
+}
