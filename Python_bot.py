@@ -72,21 +72,21 @@ async def on_message(client, userdata, message):
     bot = Bot(token='6728633709:AAFXKIkfqvrAS2ublCwPKIJ5PIdrKqdgEps')
     for user in chatIDs:
       if temperatureThresholdEnabled and temperatura> temperatureThresholdHigh:
-          bot.send_message(chat_id=user.id, text="Attenzione: Temperatura troppo alta[C]!")
+          await bot.send_message(chat_id=user.id, text="Attenzione: Temperatura troppo alta[C]!")
           temperatureThresholdEnabled = False
             
       if temperatureThresholdEnabled == False and temperatura<= temperatureThresholdHigh-temperatureHysteresis:
           temperatureThresholdEnabled = True
                 
       if pressureThresholdEnabled and pressione  > pressureThresholdHigh:
-          bot.send_message(chat_id=user.id, text="Attenzione: Pressione troppo alta[C]!")
+          await bot.send_message(chat_id=user.id, text="Attenzione: Pressione troppo alta[C]!")
           pressureThresholdEnabled = False 
       
       if pressureThresholdEnabled== False and pressione <= pressureThresholdHigh - pressureHysteresis:
           pressureThresholdEnabled = True
      
       if lightThresholdEnabled and luminosita  > lightThresholdHigh:
-          bot.send_message(chat_id=user.id, text="Attenzione: Luminosità troppo alta[C]!")
+          await bot.send_message(chat_id=user.id, text="Attenzione: Luminosità troppo alta[C]!")
           lightThresholdEnabled = False
                  
       if lightThresholdEnabled== False and luminosita <= lightThresholdHigh - lightHysteresis:
