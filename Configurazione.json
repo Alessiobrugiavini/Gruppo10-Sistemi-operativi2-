@@ -1,26 +1,17 @@
 {
-    "conf":{
-        "broker_address" : "192.168.155.229",
-        "db_config":{
-            "host":"192.168.155.51",
-            "user":"brugia",
-            "password":"halo3000",
-            "database":"esp32"
-        },
-        "temperatura":{
-            "temperatureThresholdHigh" : 5.5,
-            "temperatureHysteresis" : 1.0 
-        },
-        "luminosita":{
-            "lightThresholdHigh":530.0,
-            "lightHysteresis":200.0
-        },
-        "pressione":{
-            "pressureThresholdHigh":1022.0,
-            "pressureHysteresis" : 200.0
-        },
-        "TELEGRAM_TOKEN" :"6728633709:AAFXKIkfqvrAS2ublCwPKIJ5PIdrKqdgEps"
-
-    }
-    
+    "broker_address" : "192.168.155.229",
+    "db_config":{
+        "host":"192.168.155.51",
+        "user":"brugia",
+        "password":"halo3000",
+        "database":"esp32_data"
+    },
+        
+    "temperatureThresholdHigh" : 5.5,
+    "temperatureHysteresis" : 1.0, 
+    "lightThresholdHigh":530.0,
+    "lightHysteresis":200.0,
+     "pressureThresholdHigh":1022.0,
+    "pressureHysteresis" : 200.0,
+    "TELEGRAM_TOKEN" :"6728633709:AAFXKIkfqvrAS2ublCwPKIJ5PIdrKqdgEps"    
 }
