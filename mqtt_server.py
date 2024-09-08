@@ -16,25 +16,16 @@ with open("Configurazione.json") as f:
     data=json.load(f)
 
 db_config = {
-     'host': '192.168.155.51',  # Indirizzo del server MySQL
-     'user': 'brugia',  # Nome utente del database MySQL
-     'password': 'halo3000',  # Password del database MySQL
-     'database': 'esp32_data'  # Nome del database MySQL
+     'host': data['db_config']['host'],  # Indirizzo del server MySQL
+     'user': data['db_config']['user'],  # Nome utente del database MySQL
+     'password': data['db_config']['password'],  # Password del database MySQL
+     'database': data['db_config']['database']  # Nome del database MySQL
 }
 
 temperatureThresholdEnabled = True
-temperatureThresholdHigh = 5.5 
-temperatureHysteresis = 1.0
-
 lightThresholdEnabled = True
-lightThresholdHigh = 530.0
-lightHysteresis = 200.0
-
 pressureThresholdEnabled = True
-pressureThresholdHigh = 1022.0
-pressureHysteresis = 200.0
 
-broker_address = "192.168.155.229"
 topics = ["sensori"]  # Un unico topic per i dati strutturati
 
 def send_alert(message):
@@ -76,25 +67,25 @@ def on_message(client, userdata, message):
     except ValueError as e:
         print(f"Errore nel decodificare il payload: {e}")
 
-    if temperatureThresholdEnabled and temperatura> temperatureThresholdHigh:
+    if temperatureThresholdEnabled and temperatura> data['temperatureThresholdHigh']:
         send_alert("Attenzione: temperatura alta")      
         temperatureThresholdEnabled = False
             
-    if temperatureThresholdEnabled == False and temperatura<= temperatureThresholdHigh-temperatureHysteresis:
+    if temperatureThresholdEnabled == False and temperatura<= data['temperatureThresholdHigh']- data['temperatureHysteresis']:
         temperatureThresholdEnabled = True
                 
-    if pressureThresholdEnabled and pressione  > pressureThresholdHigh:
+    if pressureThresholdEnabled and pressione  > data['pressureThresholdHigh']:
         send_alert("Attenzione: pressione alta")         
         pressureThresholdEnabled = False 
       
-    if pressureThresholdEnabled== False and pressione <= pressureThresholdHigh - pressureHysteresis:
+    if pressureThresholdEnabled== False and pressione <= data['pressureThresholdHigh'] - data['pressureHysteresis']:
         pressureThresholdEnabled = True
      
-    if lightThresholdEnabled and luminosita  > lightThresholdHigh:
+    if lightThresholdEnabled and luminosita  > data['lightThresholdHigh']:
         send_alert("Attenzione: luminosità alta")
         lightThresholdEnabled = False
                  
-    if lightThresholdEnabled== False and luminosita <= lightThresholdHigh - lightHysteresis:
+    if lightThresholdEnabled== False and luminosita <= data['lightThresholdHigh'] - data['lightHysteresis']:
         lightThresholdEnabled = True
 
 def main():
@@ -104,7 +95,7 @@ def main():
 
     client.on_message = on_message
 
-    client.connect(broker_address)
+    client.connect(data['broker_address'])
     print("Connessione al broker MQTT avvenuta con successo")
 
     # Sottoscrizione ai topic
