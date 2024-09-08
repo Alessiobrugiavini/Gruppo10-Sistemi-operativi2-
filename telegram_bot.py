@@ -11,22 +11,17 @@ import threading
 from datetime import datetime, time, timedelta
 import asyncio
 import json
-import jsonpath_ng as jp 
-
 
 with open("Configurazione.json") as f:
     data=json.load(f)
 
-
-# Imposta le credenziali del tuo bot Telegram
-TELEGRAM_TOKEN = "6728633709:AAFXKIkfqvrAS2ublCwPKIJ5PIdrKqdgEps"
-
 db_config = {
-     'host': '192.168.155.51',  # Indirizzo del server MySQL
-     'user': 'brugia',  # Nome utente del database MySQL
-     'password': 'halo3000',  # Password del database MySQL
-     'database': 'esp32_data'  # Nome del database MySQL
+     'host': data['db_config']['host'],  # Indirizzo del server MySQL
+     'user': data['db_config']['user'],  # Nome utente del database MySQL
+     'password': data['db_config']['password'],  # Password del database MySQL
+     'database': data['db_config']['database']  # Nome del database MySQL
 }
+
 topics = ["sensori"]  # Un unico topic per i dati strutturati
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -139,13 +134,13 @@ async def leggi(update, context):
         await context.bot.send_message(chat_id=user.id, text="Formato data e ora non valido. Utilizza 'YYYY-MM-DD HH:MM:SS'.")
 
 # Crea un'applicazione Telegram
-application = Application.builder().token(TELEGRAM_TOKEN).build()
+application = Application.builder().token(data['TELEGRAM_TOKEN']).build()
 application.add_handler(CommandHandler("start", start))
 application.add_handler(CommandHandler("leggi", leggi))
 
 # Definisci la funzione per inviare un messaggio Telegram
 async def invia_messaggio_telegram(messaggio, ids):
-    bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    bot = telegram.Bot(token=data['TELEGRAM_TOKEN'])
  
     async with bot: 
         print("Prova invio messaggio bot.")
@@ -161,3 +156,4 @@ if  __name__ == "__main__":
     print("Connessione al database MySQL avvenuta con successo")
 
     application.run_polling(allowed_updates=Update.ALL_TYPES)
+
