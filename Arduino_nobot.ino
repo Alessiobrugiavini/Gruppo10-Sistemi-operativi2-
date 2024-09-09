@@ -1,6 +1,3 @@
-/* https://dl.espressif.com/dl/package_esp32_index.json
-#include "arduino_secrets.h"
-*/
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BMP280.h>
@@ -11,7 +8,6 @@
 #include <HTTPClient.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
-#include <ArduinoJson.h>
 
 // Dichiarazioni delle costanti e delle variabili globali
 TaskHandle_t sensorTaskHandle, mqttTaskHandle, syncTimeTaskHandle;
@@ -20,7 +16,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 const char *ssid = "HONOR";
 const char *password = "k9sD4@P4Re9";
-const char *mqttBroker = "192.168.155.229";
+const char *mqttBroker = "192.168.33.229";
 const int mqttPort = 1883;
 
 // Costanti per i topic MQTT
@@ -93,7 +89,6 @@ void loop() {
  
   delay(10000); // Attendi 10 secondi prima di controllare di nuovo
 }
-
 
 void connectToWiFi() {
   Serial.println("Connessione al WiFi..");
@@ -184,6 +179,10 @@ void syncTimeTask(void *parameter) {
     vTaskDelay(3600000 / portTICK_PERIOD_MS); // Sincronizza ogni ora
   }
 }
+
+
+
+
 
 
 
