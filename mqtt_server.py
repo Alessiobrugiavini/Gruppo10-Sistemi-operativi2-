@@ -12,16 +12,6 @@ import json
 
 import telegram_bot
 
-with open("Configurazione.json") as f:
-    data=json.load(f)
-
-db_config = {
-     'host': data['db_config']['host'],  # Indirizzo del server MySQL
-     'user': data['db_config']['user'],  # Nome utente del database MySQL
-     'password': data['db_config']['password'],  # Password del database MySQL
-     'database': data['db_config']['database']  # Nome del database MySQL
-}
-
 temperatureThresholdEnabled = True
 lightThresholdEnabled = True
 pressureThresholdEnabled = True
@@ -67,25 +57,25 @@ def on_message(client, userdata, message):
     except ValueError as e:
         print(f"Errore nel decodificare il payload: {e}")
 
-    if temperatureThresholdEnabled and temperatura> data['temperatureThresholdHigh']:
+    if temperatureThresholdEnabled and temperatura> data_config['temperatureThresholdHigh']:
         send_alert("Attenzione: temperatura alta")      
         temperatureThresholdEnabled = False
             
-    if temperatureThresholdEnabled == False and temperatura<= data['temperatureThresholdHigh']- data['temperatureHysteresis']:
+    if temperatureThresholdEnabled == False and temperatura<= data_config['temperatureThresholdHigh']- data_config['temperatureHysteresis']:
         temperatureThresholdEnabled = True
                 
-    if pressureThresholdEnabled and pressione  > data['pressureThresholdHigh']:
+    if pressureThresholdEnabled and pressione  > data_config['pressureThresholdHigh']:
         send_alert("Attenzione: pressione alta")         
         pressureThresholdEnabled = False 
       
-    if pressureThresholdEnabled== False and pressione <= data['pressureThresholdHigh'] - data['pressureHysteresis']:
+    if pressureThresholdEnabled == False and pressione <= data_config['pressureThresholdHigh'] - data_config['pressureHysteresis']:
         pressureThresholdEnabled = True
      
-    if lightThresholdEnabled and luminosita  > data['lightThresholdHigh']:
+    if lightThresholdEnabled and luminosita  > data_config['lightThresholdHigh']:
         send_alert("Attenzione: luminosità alta")
         lightThresholdEnabled = False
                  
-    if lightThresholdEnabled== False and luminosita <= data['lightThresholdHigh'] - data['lightHysteresis']:
+    if lightThresholdEnabled== False and luminosita <= data_config['lightThresholdHigh'] - data_config['lightHysteresis']:
         lightThresholdEnabled = True
 
 def main():
@@ -95,7 +85,7 @@ def main():
 
     client.on_message = on_message
 
-    client.connect(data['broker_address'])
+    client.connect(data_config['broker_address'])
     print("Connessione al broker MQTT avvenuta con successo")
 
     # Sottoscrizione ai topic
@@ -107,6 +97,14 @@ def main():
 
 if __name__ == '__main__':
 
+    with open("Configurazione.json") as f:
+        data_config=json.load(f)
+    db_config = {
+     'host': data_config['db_config']['host'],  # Indirizzo del server MySQL
+     'user': data_config['db_config']['user'],  # Nome utente del database MySQL
+     'password': data_config['db_config']['password'],  # Password del database MySQL
+     'database': data_config['db_config']['database']  # Nome del database MySQL
+}
 # Connessione al database MySQL
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
