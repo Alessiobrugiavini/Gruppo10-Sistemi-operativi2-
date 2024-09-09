@@ -13,13 +13,13 @@ import asyncio
 import json
 
 with open("Configurazione.json") as f:
-    data=json.load(f)
+    data_config=json.load(f)
 
 db_config = {
-     'host': data['db_config']['host'],  # Indirizzo del server MySQL
-     'user': data['db_config']['user'],  # Nome utente del database MySQL
-     'password': data['db_config']['password'],  # Password del database MySQL
-     'database': data['db_config']['database']  # Nome del database MySQL
+     'host': data_config['db_config']['host'],  # Indirizzo del server MySQL
+     'user': data_config['db_config']['user'],  # Nome utente del database MySQL
+     'password': data_config['db_config']['password'],  # Password del database MySQL
+     'database': data_config['db_config']['database']  # Nome del database MySQL
 }
 
 topics = ["sensori"]  # Un unico topic per i dati strutturati
@@ -134,13 +134,13 @@ async def leggi(update, context):
         await context.bot.send_message(chat_id=user.id, text="Formato data e ora non valido. Utilizza 'YYYY-MM-DD HH:MM:SS'.")
 
 # Crea un'applicazione Telegram
-application = Application.builder().token(data['TELEGRAM_TOKEN']).build()
+application = Application.builder().token(data_config['TELEGRAM_TOKEN']).build()
 application.add_handler(CommandHandler("start", start))
 application.add_handler(CommandHandler("leggi", leggi))
 
 # Definisci la funzione per inviare un messaggio Telegram
 async def invia_messaggio_telegram(messaggio, ids):
-    bot = telegram.Bot(token=data['TELEGRAM_TOKEN'])
+    bot = telegram.Bot(token=data_config['TELEGRAM_TOKEN'])
  
     async with bot: 
         print("Prova invio messaggio bot.")
