@@ -1,0 +1,11 @@
+[Unit]
+Description=mqtt_server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/brugia/Progetto/Gruppo10-Sistemi-operativi2-/mqttBot/mqtt_server.py
+Restart=always
+User=brugia
+
+[Install]
+WantedBy=multi-user.target
