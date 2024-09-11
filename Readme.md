@@ -19,7 +19,7 @@ I dati vengono successivamente salvati in un database esterno chiamato **esp32_d
 ## Architettura del progetto
 
 1. **Acquisizione Dati**:
-   - L'ESP32 acquisisce periodicamente i dati dai sensori RTC, BH1750 e BMP280 tramite lo script INSERIRE NOME SCRIPT
+   - L'ESP32 acquisisce periodicamente i dati dai sensori RTC, BH1750 e BMP280 tramite lo script arduono-nano.ino
    
 2. **Comunicazione MQTT**:
    - I dati acquisiti vengono inviati a un broker MQTT, che gestisce l'inoltro dei messaggi tramite lo script INSERIRE NOME SCRIPT 
