@@ -1,0 +1,11 @@
+[Unit]
+Description=telegram_bot
+After=network.target
+
+[Service]
+ExecStart=/home/brugia/.pyenv/shims/python3 /home/brugia/Progetto/Gruppo10-Sistemi-operativi2-/mqttBot/telegram_bot.py
+Restart=always
+User=brugia
+
+[Install]
+WantedBy=multi-user.target
