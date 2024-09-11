@@ -1,4 +1,4 @@
-# ESP32 Sensor Data Acquisition and MQTT Integration
+# Sviluppo di un sistema di acquisizione dati tramite ESP32 e ricezione tramite broker MQTT.
 
 Questo progetto utilizza un **ESP32** per acquisire i dati dai sensori **RTC**, **BH1750** (sensore di luminosità) e 
 **BMP280** (sensore di pressione e temperatura), inviando poi i dati a un broker **MQTT**, in questo caso sarà un raspberry PI4. 
