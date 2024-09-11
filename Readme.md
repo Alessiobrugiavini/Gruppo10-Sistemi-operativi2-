@@ -45,13 +45,13 @@ I dati vengono successivamente salvati in un database esterno chiamato **esp32_d
   - Librerie per l'ESP32.
   - Libreria MQTT.
   - Librerie per l'interfacciamento con i sensori BH1750, BMP280 e RTC.
-  - Librerie per l'integrazione con il bot Telegram.
+  - Librerie per l'integrazione con il bot Telegram consultabili nel file requirements.txt 
 
 ## Installazione
 
 ### 1. Configurazione dell'ESP32
 
-- Scaricare e installare le librerie necessarie per la gestione dei sensori (BH1750, BMP280 e RTC) e la comunicazione MQTT.
+- Scaricare e installare le librerie necessarie per la gestione dei sensori (BH1750, BMP280 e RTC) e la comunicazione MQTT tramite il comando pip install requirements.txt
 - Caricare lo sketch sull'ESP32, assicurandosi di configurare i parametri WiFi e MQTT.
 
 ### 2. Configurazione del Broker MQTT
