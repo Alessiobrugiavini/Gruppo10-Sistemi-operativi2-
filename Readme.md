@@ -29,7 +29,7 @@ I dati vengono successivamente salvati in un database esterno chiamato **esp32_d
 
 4. **Bot Telegram**:
    - L'utente può interagire con un bot Telegram per richiedere i dati memorizzati e visualizzare grafici basati sui dati raccolti. 
-     Per maggiori dettagli consultare lo script Bot.py
+     Per maggiori dettagli consultare lo script Telegram_bot.py
 
 ## Requisiti
 
