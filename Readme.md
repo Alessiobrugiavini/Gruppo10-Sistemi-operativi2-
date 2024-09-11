@@ -22,7 +22,7 @@ I dati vengono successivamente salvati in un database esterno chiamato **esp32_d
    - L'ESP32 acquisisce periodicamente i dati dai sensori RTC, BH1750 e BMP280 tramite lo script Arduinoo-nanobot.ino
    
 2. **Comunicazione MQTT**:
-   - I dati acquisiti vengono inviati a un broker MQTT, che gestisce l'inoltro dei messaggi tramite lo script INSERIRE NOME SCRIPT 
+   - I dati acquisiti vengono inviati a un broker MQTT, che gestisce l'inoltro dei messaggi tramite lo script Mqtt_server.py
    
 3. **Database esterno**:
    - I dati dei sensori vengono salvati in un database chiamato in qesto caso **esp32_data**.
