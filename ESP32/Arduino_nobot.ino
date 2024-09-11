@@ -5,7 +5,6 @@
 #include <RTClib.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <HTTPClient.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
