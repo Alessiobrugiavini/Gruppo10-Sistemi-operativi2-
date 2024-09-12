@@ -18,13 +18,6 @@ const char *password = "k9sD4@P4Re9";
 const char *mqttBroker = "192.168.33.229";
 const int mqttPort = 1883;
 
-// Costanti per i topic MQTT
-const char *temperatureTopic = "temperatura";
-const char *pressureTopic = "pressione";
-const char *lightTopic = "luminosità";
-const char *dateTopic = "data";
-const char *timeTopic = "ora";
-
 // Inizializzazione dei sensori
 Adafruit_BMP280 bmp;
 BH1750 lightSensor;
