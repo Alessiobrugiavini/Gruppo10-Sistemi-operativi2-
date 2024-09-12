@@ -229,6 +229,7 @@ if __name__ == "__main__":
     # Connessione al database MySQL
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
+    cursor.execute("SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED")
     print("Connessione al database MySQL avvenuta con successo")
 
     # Crea un'applicazione Telegram
